@@ -47,8 +47,8 @@ project-directory/
 1. **Clone the repository**:
 
    ```sh
-   git clone https://github.com/your-username/your-repository-name.git
-   cd your-repository-name
+   git clone https://github.com/Elijjjaaaahhhh/EPL_Simulator.git
+   cd EPL_Simulator
    ```
 
 2. **Create a virtual environment**:
