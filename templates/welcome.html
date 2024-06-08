@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Football League Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="welcome-banner">
+        <h1>WELCOME TO THE PREMIER LEAGUE</h1>
+    </div>
+    <div class="buttons">
+        <button onclick="location.href='{{ url_for('teams') }}'">Teams</button>
+        <button onclick="location.href='{{ url_for('fixture', week=1) }}'">Next Fixture</button>
+    </div>
+</body>
+</html>

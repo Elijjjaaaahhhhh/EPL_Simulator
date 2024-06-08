@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-banner">
+        <h1>Standings</h1>
+    </div>
+    <table class="standings-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>MP</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Losses</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in standings %}
+                <tr class="{{ 'champions-league' if loop.index <= 4 else 'europa-league' if loop.index <= 6 else 'conference-league' if loop.index == 7 else 'relegation' if loop.index >= 18 else '' }}">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.wins + team.draws + team.losses }}</td>
+                    <td>{{ team.wins }}</td>
+                    <td>{{ team.draws }}</td>
+                    <td>{{ team.losses }}</td>
+                    <td>{{ team.goals_scored }}</td>
+                    <td>{{ team.goals_against }}</td>
+                    <td>{{ team.goal_difference() }}</td>
+                    <td>{{ team.points() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if end_of_season %}
+        <h2>End of Season</h2>
+        <button onclick="location.href='{{ url_for('promoted') }}'">See Promoted Teams</button>
+        <button onclick="location.href='{{ url_for('next_season') }}'">Jump to Next Season</button>
+    {% endif %}
+    <button onclick="location.href='{{ url_for('fixture', week=current_week+1) }}'">Next Fixture</button>
+</body>
+</html>

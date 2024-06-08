@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Week {{ week }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-banner">
+        <h1>Results - Week {{ week }}</h1>
+    </div>
+    <table class="fixture-results-table">
+        <thead>
+            <tr>
+                <th colspan="3" class="league-header">English Premier League</th>
+            </tr>
+            <tr>
+                <th>Team 1</th>
+                <th>Score</th>
+                <th>Team 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result[0] }}</td>
+                    <td>{{ result[2] }} - {{ result[3] }}</td>
+                    <td>{{ result[1] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if end_of_season %}
+        <h2>End of Season</h2>
+        <button onclick="location.href='{{ url_for('standings') }}'">See Winners</button>
+        <button onclick="location.href='{{ url_for('promoted') }}'">See Promoted Teams</button>
+        <button onclick="location.href='{{ url_for('next_season') }}'">Jump to Next Season</button>
+    {% else %}
+        <button onclick="location.href='{{ url_for('fixture', week=week+1) }}'">Next Fixture</button>
+    {% endif %}
+    <button onclick="location.href='{{ url_for('standings') }}'">Standings</button>
+</body>
+</html>

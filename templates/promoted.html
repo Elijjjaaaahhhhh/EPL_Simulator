@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoted Teams</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-banner">
+        <h1>Promoted Teams</h1>
+    </div>
+    <ul class="promoted-teams">
+        {% for team in promoted %}
+            <li>{{ team }}</li>
+        {% endfor %}
+    </ul>
+    <button onclick="location.href='{{ url_for('next_season') }}'">Jump to Next Season</button>
+    <button onclick="location.href='{{ url_for('welcome') }}'">End</button>
+</body>
+</html>
